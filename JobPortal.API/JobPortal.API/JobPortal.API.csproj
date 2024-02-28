@@ -18,7 +18,6 @@
     <Folder Include="Models\Data\" />
     <Folder Include="Repositorie\Implimentation\" />
     <Folder Include="Repositorie\Interface\" />
-    <Folder Include="Services\Implementation\" />
     <Folder Include="Services\Interface\" />
   </ItemGroup>
 
