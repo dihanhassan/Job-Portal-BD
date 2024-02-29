@@ -20,8 +20,8 @@ namespace JobPortal.API.Models.Authentication
     }
 }
 
-/*CREATE TABLE Users (
-    UserID INT PRIMARY KEY IDENTITY,
+/*CREATE TABLE UserTable (
+    UserID VARCHAR(250) PRIMARY KEY NOT NULL,
     UserName VARCHAR(50) NOT NULL,
     Email VARCHAR(100) NOT NULL UNIQUE,
     UserPassword VARCHAR(255) NOT NULL,

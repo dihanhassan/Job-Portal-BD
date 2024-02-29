@@ -1,4 +1,5 @@
 ﻿using JobPortal.API.Models.Authentication;
+using JobPortal.API.Models.Response;
 using JobPortal.API.Repositorie.Interface;
 using JobPortal.API.Services.Interface;
 
@@ -11,14 +12,23 @@ namespace JobPortal.API.Services.Implementation
         {
             _registrationRepo = registrationRepo;
         }
-        public async Task< bool> RegisterUser(UserRegistrationModel user)
+        public async Task< ResponseModel> RegisterUser(UserRegistrationModel user)
         {
-            int  response = await _registrationRepo.RegisterUser(user);
-            if(response > 0)
+            int  RowsCount= await _registrationRepo.RegisterUser(user);
+            ResponseModel response = new ResponseModel();
+            if(RowsCount > 0)
             {
-                return true;
+                response.StatusMessage = $"Login Success . Hello Mr. {user.UserName} ";
+                response.StatusCode = 200;
+                return response;
             }
-            else { return false; }
+            else 
+            {
+                response.StatusMessage = $"Login Faield .";
+                response.StatusCode = 100;
+                return response;
+
+            }
         }
     }
 }

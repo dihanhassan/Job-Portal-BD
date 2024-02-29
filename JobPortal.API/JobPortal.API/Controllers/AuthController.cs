@@ -9,6 +9,7 @@ using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Authorization;
 using JobPortal.API.Services.Implementation;
 using JobPortal.API.Services.Interface;
+using JobPortal.API.Models.Response;
 namespace JobPortal.API.Controllers
 {
     [Route("api/[controller]")]
@@ -40,14 +41,10 @@ namespace JobPortal.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginModel user)
         {
-            IActionResult response = Unauthorized();
+          IActionResult response = Unauthorized();
             
-
-            string message = await _loginService.GetUserLoginInfo(user);
-
- 
-               
-             return  Ok(new { message = " Hello " + user.UserName + ", "+ message });
+           
+           return  Ok(await _loginService.GetUserLoginInfo(user));
             
            
         }
@@ -56,12 +53,8 @@ namespace JobPortal.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Registration(UserRegistrationModel user)
         {
-            bool response = await _registrationService.RegisterUser(user);
-            if (response)
-            {
-                return Ok(new { user = user, });
-            }
-            else { return BadRequest(new { Message = "Invalid User or Password", });  }
+            return  Ok( await _registrationService.RegisterUser(user));
+       
         }
 
 

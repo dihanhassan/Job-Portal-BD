@@ -22,6 +22,8 @@ namespace JobPortal.API.Repositorie.Implementation
 
             int RowsCount = 0;
             user.IsActive = false;
+            user.RegistrationDate = DateTime.Now;
+
             using (var connection = _connection.CreateConnection())
             {
 

@@ -1,9 +1,10 @@
 ﻿using JobPortal.API.Models.Authentication;
+using JobPortal.API.Models.Response;
 
 namespace JobPortal.API.Services.Interface
 {
     public interface IRegistrationService
     {
-        public  Task<bool> RegisterUser (UserRegistrationModel user);
+        public  Task<ResponseModel> RegisterUser (UserRegistrationModel user);
     }
 }

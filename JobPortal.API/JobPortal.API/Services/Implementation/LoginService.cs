@@ -1,7 +1,7 @@
 ﻿using JobPortal.API.Models.Authentication;
 using JobPortal.API.Repositorie.Interface;
 using JobPortal.API.Services.Interface;
-
+using JobPortal.API.Models.Response;
 namespace JobPortal.API.Services.Implementation
 {
     public class LoginService : ILoginService
@@ -18,21 +18,32 @@ namespace JobPortal.API.Services.Implementation
             _repo = repo;
             _tokenService = tokenService;
         }
-        public async Task<string> GetUserLoginInfo(UserLoginModel user)
+        public async Task<ResponseModel> GetUserLoginInfo(UserLoginModel user)
         {
-            UserLoginModel response;
             
-            response = await _repo.GetUserLoginInfo();
 
-            if (response!=null && response.UserName== user.UserName && response.UserPassword == user.UserPassword)
+            ResponseModel response = new ResponseModel();
+
+            UserLoginModel credential = await _repo.GetUserLoginInfo(user.UserName, user.UserPassword);
+
+            if (credential != null && credential.UserName== user.UserName && credential.UserPassword == user.UserPassword)
             {
                 string token = await _tokenService.AuthenticUser(user);
-               
-                return "Login Success. GUID = "+response.UserID +"  Token : "+token;
+                credential.UserPassword = null;
+                response.UserLogin = credential;
+                response.StatusMessage = $"Login Success . Hello Mr. {user.UserName} ";
+                response.StatusCode = 200 ;
+                response.token = token;
+                return response;
+
+
             }
             else
             {
-                return "Invalid user or password";
+                response.StatusMessage = $"Login Faield .";
+                response.StatusCode = 100;
+                response.UserLogin = credential;
+                return response;
             }
         }
 
