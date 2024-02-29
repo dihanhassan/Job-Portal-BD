@@ -41,13 +41,13 @@ namespace JobPortal.API.Controllers
         public async Task<IActionResult> Login(UserLoginModel user)
         {
             IActionResult response = Unauthorized();
-            var token = await _tokenService.AuthenticUser(user);
+            
 
             string message = await _loginService.GetUserLoginInfo(user);
 
  
                
-             return  Ok(new { token = token, message = " Hello " + user.UserName + ", "+ message });
+             return  Ok(new { message = " Hello " + user.UserName + ", "+ message });
             
            
         }

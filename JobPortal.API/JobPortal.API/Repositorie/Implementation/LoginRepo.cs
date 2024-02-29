@@ -17,7 +17,7 @@ namespace JobPortal.API.Repositorie.Implementation
             UserLoginModel response = null;
 
            
-            string query = "SELECT * FROM Users";
+            string query = "SELECT * FROM UserTable";
 
             using (var connection = _dbConnection.CreateConnection())
             {

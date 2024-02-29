@@ -14,8 +14,11 @@ namespace JobPortal.API.Repositorie.Implementation
         }
         public async Task<int> RegisterUser(UserRegistrationModel user)
         {
-            string query = @"INSERT INTO Users (UserName, Email, UserPassword, UserType, RegistrationDate, IsActive)
-                         VALUES (@UserName, @Email, @UserPassword, @UserType, @RegistrationDate, @IsActive)";
+           
+            user.UserID = Guid.NewGuid().ToString();
+            string query = @"INSERT INTO UserTable (UserID, UserName, Email, UserPassword, UserType, RegistrationDate, IsActive)
+                         VALUES (@UserID, @UserName, @Email, @UserPassword, @UserType, @RegistrationDate, @IsActive)";
+
 
             int RowsCount = 0;
             user.IsActive = false;

@@ -7,26 +7,32 @@ namespace JobPortal.API.Services.Implementation
     public class LoginService : ILoginService
     {
         private readonly ILoginRepo _repo;
+        private TokenService _tokenService;
         public LoginService
         (
-            ILoginRepo repo
+            ILoginRepo repo, 
+            TokenService tokenService
+
         )
         {
             _repo = repo;
+            _tokenService = tokenService;
         }
         public async Task<string> GetUserLoginInfo(UserLoginModel user)
         {
             UserLoginModel response;
-
+            
             response = await _repo.GetUserLoginInfo();
 
-            if (response == null)
+            if (response!=null && response.UserName== user.UserName && response.UserPassword == user.UserPassword)
             {
-                return "Invalid user or password";
+                string token = await _tokenService.AuthenticUser(user);
+               
+                return "Login Success. GUID = "+response.UserID +"  Token : "+token;
             }
             else
             {
-                return "Login Success";
+                return "Invalid user or password";
             }
         }
 
