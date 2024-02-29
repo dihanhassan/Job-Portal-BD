@@ -1,9 +1,9 @@
 ﻿using Dapper;
 using JobPortal.API.Models.Authentication;
 using JobPortal.API.Models.Data;
-using JobPortal.API.Repositorie.Interface.Authentication;
+using JobPortal.API.Repositorie.Interface;
 
-namespace JobPortal.API.Repositorie.Implimentation.Authentication
+namespace JobPortal.API.Repositorie.Implementation
 {
     public class RegistrationRepo : IRegistrationRepo
     {
@@ -12,19 +12,20 @@ namespace JobPortal.API.Repositorie.Implimentation.Authentication
         {
             _connection = connection;
         }
-        public int RegisterUser(UserRegistrationModel user)
+        public async Task<int> RegisterUser(UserRegistrationModel user)
         {
             string query = @"INSERT INTO Users (UserName, Email, UserPassword, UserType, RegistrationDate, IsActive)
                          VALUES (@UserName, @Email, @UserPassword, @UserType, @RegistrationDate, @IsActive)";
 
             int RowsCount = 0;
-            using (var connection = this._connection.CreateConnection())
+            user.IsActive = false;
+            using (var connection = _connection.CreateConnection())
             {
 
-                RowsCount = connection.Execute(query, user);
+                RowsCount = await connection.ExecuteAsync(query, user);
 
             }
-            return RowsCount;
+            return  RowsCount;
 
         }
     }

@@ -12,25 +12,15 @@ namespace JobPortal.API.Services.Implementation
         {
             _configuration = configuration;
         }
-        public string AuthenticUser(UserLoginModel user)
+        public async Task< string> AuthenticUser(UserLoginModel user)
         {
-            UserLoginModel _actualUser = new UserLoginModel();
-
-            UserLoginModel _user = null;
-            _actualUser.UserName = "xyz";
-            _actualUser.Password = "123";
-
-            if (user.UserName == _actualUser.UserName && user.Password == _actualUser.Password)
-            {
-                return GenerateToken(user);
-            }
-            else
-            {
-                return null;
-            }
+           
+            
+              return await  GenerateToken(user);
+           
             
         }
-        private string GenerateToken(UserLoginModel user)
+        private async Task< string> GenerateToken(UserLoginModel user)
         {
 
             var security_key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -41,7 +31,7 @@ namespace JobPortal.API.Services.Implementation
 
                 );
 
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            return  new JwtSecurityTokenHandler().WriteToken(token);
         }
 
     }

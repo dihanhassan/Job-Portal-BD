@@ -4,11 +4,15 @@ namespace JobPortal.API.Models.Authentication
 {
     public class UserLoginModel
     {
-        [Required]
+       
         public string UserName { get; set; }
-        [Required]
-        public string Password { get; set; }
-      
+       
+        public string UserPassword { get; set; }
+        public int UserType { get; set; }
+
+       
+
+
 
     }
 }

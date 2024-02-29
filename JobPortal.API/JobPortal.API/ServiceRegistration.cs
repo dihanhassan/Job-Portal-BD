@@ -2,10 +2,9 @@
 using JobPortal.API.Models.Data;
 using JobPortal.API.Services.Implementation;
 using JobPortal.API.Services.Interface;
-using JobPortal.API.Repositorie.Implimentation;
+using JobPortal.API.Repositorie;
 using JobPortal.API.Repositorie.Interface;
-using JobPortal.API.Repositorie.Interface.Authentication;
-using JobPortal.API.Repositorie.Implimentation.Authentication;
+using JobPortal.API.Repositorie.Implementation;
 namespace JobPortal.API
 {
     public static class ServiceRegistration
@@ -17,6 +16,8 @@ namespace JobPortal.API
 
             Services.AddTransient<IRegistrationService, RegistrationService>();
             Services.AddTransient<IRegistrationRepo, RegistrationRepo>();
+            Services.AddTransient<ILoginRepo, LoginRepo>();
+            Services.AddTransient<ILoginService, LoginService>();
         }
     }
 }

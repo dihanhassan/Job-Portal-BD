@@ -4,6 +4,6 @@ namespace JobPortal.API.Services.Interface
 {
     public interface IRegistrationService
     {
-        public bool RegisterUser (UserRegistrationModel user);
+        public  Task<bool> RegisterUser (UserRegistrationModel user);
     }
 }

@@ -18,10 +18,19 @@ namespace JobPortal.API.Controllers
        
         private readonly TokenService _tokenService;
         private readonly IRegistrationService _registrationService;
-        public AuthController(TokenService tokenService, IRegistrationService registrationService )
+        private readonly ILoginService _loginService;
+        public AuthController
+        (
+            TokenService tokenService,
+            IRegistrationService registrationService,
+            ILoginService loginService
+
+
+        )
         {
             _tokenService = tokenService;    
             _registrationService = registrationService; 
+            _loginService = loginService;
         }
 
        
@@ -29,26 +38,25 @@ namespace JobPortal.API.Controllers
         [Route("login")]
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Login(UserLoginModel user)
+        public async Task<IActionResult> Login(UserLoginModel user)
         {
             IActionResult response = Unauthorized();
-            var token = _tokenService.AuthenticUser(user);
-            if (token != null)
-            {
+            var token = await _tokenService.AuthenticUser(user);
+
+            string message = await _loginService.GetUserLoginInfo(user);
+
+ 
                
-                return  Ok(new { token = token,User_name =  user.UserName,Statuscode = "done 100" });
-            }
-            else
-            {
-                return BadRequest("Invalid User or passWord");
-            }
+             return  Ok(new { token = token, message = " Hello " + user.UserName + ", "+ message });
+            
+           
         }
         [Route("Registration")]
         [AllowAnonymous]
         [HttpPost]
-        public IActionResult Registration(UserRegistrationModel user)
+        public async Task<IActionResult> Registration(UserRegistrationModel user)
         {
-            bool response = _registrationService.RegisterUser(user);
+            bool response = await _registrationService.RegisterUser(user);
             if (response)
             {
                 return Ok(new { user = user, });

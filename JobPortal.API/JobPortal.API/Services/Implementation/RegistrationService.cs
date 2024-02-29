@@ -1,5 +1,5 @@
 ﻿using JobPortal.API.Models.Authentication;
-using JobPortal.API.Repositorie.Interface.Authentication;
+using JobPortal.API.Repositorie.Interface;
 using JobPortal.API.Services.Interface;
 
 namespace JobPortal.API.Services.Implementation
@@ -11,9 +11,9 @@ namespace JobPortal.API.Services.Implementation
         {
             _registrationRepo = registrationRepo;
         }
-        public bool RegisterUser(UserRegistrationModel user)
+        public async Task< bool> RegisterUser(UserRegistrationModel user)
         {
-            int  response = _registrationRepo.RegisterUser(user);
+            int  response = await _registrationRepo.RegisterUser(user);
             if(response > 0)
             {
                 return true;
