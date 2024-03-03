@@ -19,18 +19,26 @@ namespace JobPortal.API.Repositorie.Implementation
             string query = @"INSERT INTO UserTable (UserID, UserName, Email, UserPassword, UserType, RegistrationDate, IsActive)
                          VALUES (@UserID, @UserName, @Email, @UserPassword, @UserType, @RegistrationDate, @IsActive)";
 
-
             int RowsCount = 0;
-            user.IsActive = false;
-            user.RegistrationDate = DateTime.Now;
-
-            using (var connection = _connection.CreateConnection())
+            try
             {
+               
+                user.IsActive = false;
+                user.RegistrationDate = DateTime.Now;
 
-                RowsCount = await connection.ExecuteAsync(query, user);
+                using (var connection = _connection.CreateConnection())
+                {
 
+                    RowsCount = await connection.ExecuteAsync(query, user);
+
+                }
+                return RowsCount;
             }
-            return  RowsCount;
+            catch (Exception ex)
+            {
+                RowsCount=0;
+            }
+            return RowsCount;
 
         }
     }

@@ -18,13 +18,13 @@ namespace JobPortal.API.Services.Implementation
             ResponseModel response = new ResponseModel();
             if(RowsCount > 0)
             {
-                response.StatusMessage = $"Login Success . Hello Mr. {user.UserName} ";
+                response.StatusMessage = $"Registration Success . Hello Mr. {user.UserName} ";
                 response.StatusCode = 200;
                 return response;
             }
             else 
             {
-                response.StatusMessage = $"Login Faield .";
+                response.StatusMessage = $"Registration Faield .";
                 response.StatusCode = 100;
                 return response;
 

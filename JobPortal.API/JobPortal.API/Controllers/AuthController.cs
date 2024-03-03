@@ -1,63 +1,48 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using JobPortal.API.Models;
 using JobPortal.API.Models.Authentication;
-using Microsoft.IdentityModel.Tokens;
-using System.Text;
-using System.IdentityModel.Tokens.Jwt;
-using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Authorization;
-using JobPortal.API.Services.Implementation;
-using JobPortal.API.Services.Interface;
-using JobPortal.API.Models.Response;
+using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
+
 namespace JobPortal.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
     {
-       
         private readonly TokenService _tokenService;
-        private readonly IRegistrationService _registrationService;
-        private readonly ILoginService _loginService;
-        public AuthController
-        (
-            TokenService tokenService,
-            IRegistrationService registrationService,
-            ILoginService loginService
 
-
-        )
+        public AuthController(TokenService tokenService)
         {
-            _tokenService = tokenService;    
-            _registrationService = registrationService; 
-            _loginService = loginService;
+            _tokenService = tokenService;
         }
-
-       
 
         [Route("login")]
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginModel user)
         {
-          IActionResult response = Unauthorized();
-            
-           
-           return  Ok(await _loginService.GetUserLoginInfo(user));
-            
-           
+            var (accessToken, refreshToken) = await _tokenService.AuthenticateUser(user);
+
+            // Return both access and refresh tokens to the client
+            return Ok(new { accessToken, refreshToken });
         }
-        [Route("Registration")]
+
+        [Route("refresh-token")]
         [AllowAnonymous]
         [HttpPost]
-        public async Task<IActionResult> Registration(UserRegistrationModel user)
+        public async Task<IActionResult> RefreshToken([FromBody] string refreshToken)
         {
-            return  Ok( await _registrationService.RegisterUser(user));
-       
+            try
+            {
+                var newAccessToken = await _tokenService.RefreshToken(refreshToken);
+                return Ok(new { accessToken = newAccessToken });
+            }
+            catch (SecurityTokenException ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
         }
-
-
-
     }
 }
