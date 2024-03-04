@@ -48,7 +48,7 @@ namespace JobPortal.API.Controllers
             
            
         }
-        [Route("Registration")]
+        [Route("registration")]
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Registration(UserRegistrationModel user)
@@ -58,7 +58,7 @@ namespace JobPortal.API.Controllers
         }
 
 
-        [HttpPost("refresh")]
+        [HttpPost("refresh-token")]
         public async Task<IActionResult> RefreshTokens( [FromBody]  UserLoginModel user)
         {
           

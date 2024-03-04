@@ -28,14 +28,17 @@ namespace JobPortal.API.Services.Implementation
 
             if (credential != null && credential.UserName== user.UserName && credential.UserPassword == user.UserPassword)
             {
+                
                 user.UserID = credential.UserID;
                 var token = await _tokenService.AuthenticUser(user);
+                credential.AccessToken = token.AcessToken;
+                credential.RefreshToken = token.RefreshToken;
+               
                 credential.UserPassword = null;
                 response.UserLogin = credential;
                 response.StatusMessage = $"Login Success . Hello Mr. {user.UserName} ";
                 response.StatusCode = 200 ;
-                response.accessToken = token.AcessToken;
-                response.refreshToken = token.RefreshToken;
+                
                 return response;
 
 

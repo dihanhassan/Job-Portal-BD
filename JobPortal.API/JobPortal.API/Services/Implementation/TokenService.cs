@@ -65,7 +65,7 @@ namespace JobPortal.API.Services.Implementation
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(_configuration["Jwt:RefreshTokenKey"]);
 
-                // Token validation parameters
+               
                 var tokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -75,17 +75,17 @@ namespace JobPortal.API.Services.Implementation
                     ClockSkew = TimeSpan.Zero
                 };
 
-                // Validate and decode the refresh token
+               
                 var claimsPrincipal = tokenHandler.ValidateToken(refreshToken, tokenValidationParameters, out _);
 
-                // Extract the user ID from the token payload
+               
                 var userId = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
                 return  userId;
             }
             catch (Exception ex)
             {
-                // Token validation failed
+            
                 return null;
             }
         }
