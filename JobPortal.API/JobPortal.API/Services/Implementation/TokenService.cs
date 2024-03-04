@@ -1,6 +1,7 @@
 ﻿using JobPortal.API.Models.Authentication;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 
 namespace JobPortal.API.Services.Implementation
@@ -12,7 +13,7 @@ namespace JobPortal.API.Services.Implementation
         {
             _configuration = configuration;
         }
-        public async Task< string> AuthenticUser(UserLoginModel user)
+        public async Task<RefreshTokenResponse> AuthenticUser(UserLoginModel user)
         {
            
             
@@ -20,7 +21,7 @@ namespace JobPortal.API.Services.Implementation
            
             
         }
-        private async Task< string> GenerateToken(UserLoginModel user)
+        private async Task<RefreshTokenResponse> GenerateToken(UserLoginModel user)
         {
 
             var security_key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -30,9 +31,65 @@ namespace JobPortal.API.Services.Implementation
                     signingCredentials: credential
 
                 );
+            var refreshToken = await GenerateRefreshToken(user.UserID);
 
-            return  new JwtSecurityTokenHandler().WriteToken(token);
+            RefreshTokenResponse refreshTokenResponse = new RefreshTokenResponse();
+
+            refreshTokenResponse.AcessToken = new JwtSecurityTokenHandler().WriteToken(token);
+            refreshTokenResponse.RefreshToken = refreshToken;
+            return refreshTokenResponse;
+        }
+
+        private async Task<string> GenerateRefreshToken(string userId)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(_configuration["Jwt:RefreshTokenKey"]);
+
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new[]
+                {
+                    new Claim(ClaimTypes.NameIdentifier, userId)
+                }),
+                Expires = DateTime.UtcNow.AddDays(Convert.ToDouble(_configuration["Jwt:RefreshTokenExpirationTime"])),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return  tokenHandler.WriteToken(token);
+        }
+        public async Task<string> ExtractUserIdFromRefreshToken(string refreshToken)
+        {
+            try
+            {
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var key = Encoding.ASCII.GetBytes(_configuration["Jwt:RefreshTokenKey"]);
+
+                // Token validation parameters
+                var tokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(key),
+                    ValidateIssuer = false,
+                    ValidateAudience = false,
+                    ClockSkew = TimeSpan.Zero
+                };
+
+                // Validate and decode the refresh token
+                var claimsPrincipal = tokenHandler.ValidateToken(refreshToken, tokenValidationParameters, out _);
+
+                // Extract the user ID from the token payload
+                var userId = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+                return  userId;
+            }
+            catch (Exception ex)
+            {
+                // Token validation failed
+                return null;
+            }
         }
 
     }
+
 }

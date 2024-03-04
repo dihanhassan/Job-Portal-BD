@@ -10,7 +10,8 @@ namespace JobPortal.API.Models.Authentication
         public string UserPassword { get; set; }
         public int UserType { get; set; }
 
-       
+       public string RefreshToken { get; set; } = string.Empty;
+        public string AccessToken { get; set; } = string.Empty;
 
 
 

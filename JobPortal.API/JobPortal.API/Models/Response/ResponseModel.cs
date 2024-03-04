@@ -9,7 +9,8 @@ namespace JobPortal.API.Models.Response
         
         public UserLoginModel UserLogin { get; set; }
         
-        public string token { get; set; }
+        public string accessToken { get; set; }
+        public string refreshToken { get; set; }
 
     }
 }

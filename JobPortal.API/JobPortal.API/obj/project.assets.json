@@ -2263,11 +2263,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TN-99347\\Desktop\\JOB PORTAL\\JobPortal.API\\JobPortal.API\\JobPortal.API.csproj",
+      "projectUniqueName": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\JobPortal.API.csproj",
       "projectName": "JobPortal.API",
-      "projectPath": "C:\\Users\\TN-99347\\Desktop\\JOB PORTAL\\JobPortal.API\\JobPortal.API\\JobPortal.API.csproj",
+      "projectPath": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\JobPortal.API.csproj",
       "packagesPath": "C:\\Users\\TN-99347\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TN-99347\\Desktop\\JOB PORTAL\\JobPortal.API\\JobPortal.API\\obj\\",
+      "outputPath": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\TN-99347\\AppData\\Roaming\\NuGet\\NuGet.Config",
