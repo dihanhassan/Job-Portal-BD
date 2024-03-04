@@ -15,22 +15,29 @@ namespace JobPortal.API.Repositorie.Implementation
         public async Task<int> RegisterUser(UserRegistrationModel user)
         {
            
-            user.UserID = Guid.NewGuid().ToString();
-            string query = @"INSERT INTO UserTable (UserID, UserName, Email, UserPassword, UserType, RegistrationDate, IsActive)
+           try
+            {
+                user.UserID = Guid.NewGuid().ToString();
+                string query = @"INSERT INTO UserTable (UserID, UserName, Email, UserPassword, UserType, RegistrationDate, IsActive)
                          VALUES (@UserID, @UserName, @Email, @UserPassword, @UserType, @RegistrationDate, @IsActive)";
 
 
-            int RowsCount = 0;
-            user.IsActive = false;
-            user.RegistrationDate = DateTime.Now;
+                int RowsCount = 0;
+                user.IsActive = false;
+                user.RegistrationDate = DateTime.Now;
 
-            using (var connection = _connection.CreateConnection())
-            {
+                using (var connection = _connection.CreateConnection())
+                {
 
-                RowsCount = await connection.ExecuteAsync(query, user);
+                    RowsCount = await connection.ExecuteAsync(query, user);
 
+                }
+                return RowsCount;
             }
-            return  RowsCount;
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
 
         }
     }

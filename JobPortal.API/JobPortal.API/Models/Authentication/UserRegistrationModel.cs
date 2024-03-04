@@ -16,6 +16,7 @@ namespace JobPortal.API.Models.Authentication
         public bool IsActive { get; set; }
 
 
+
         
     }
 }

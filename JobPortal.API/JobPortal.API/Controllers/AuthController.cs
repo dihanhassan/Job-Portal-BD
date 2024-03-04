@@ -75,7 +75,7 @@ namespace JobPortal.API.Controllers
             }
 
          
-            var tokenResponse = await _tokenService.AuthenticUser( user);
+            var tokenResponse = await _tokenService.GenerateToken( user.UserID);
 
             return Ok(tokenResponse);
         }

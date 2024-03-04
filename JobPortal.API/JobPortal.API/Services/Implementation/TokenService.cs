@@ -17,11 +17,11 @@ namespace JobPortal.API.Services.Implementation
         {
            
             
-              return await  GenerateToken(user);
+              return await  GenerateToken(user.UserID);
            
             
         }
-        private async Task<RefreshTokenResponse> GenerateToken(UserLoginModel user)
+        public async Task<RefreshTokenResponse> GenerateToken(string userID)
         {
 
             var security_key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
@@ -31,7 +31,7 @@ namespace JobPortal.API.Services.Implementation
                     signingCredentials: credential
 
                 );
-            var refreshToken = await GenerateRefreshToken(user.UserID);
+            var refreshToken = await GenerateRefreshToken(userID);
 
             RefreshTokenResponse refreshTokenResponse = new RefreshTokenResponse();
 
