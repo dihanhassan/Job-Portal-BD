@@ -36,7 +36,7 @@ namespace JobPortal.API.Controllers
 
        
 
-        [Route("login")]
+        [Route("Login")]
         [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Login(UserLoginModel user)
@@ -55,6 +55,24 @@ namespace JobPortal.API.Controllers
         {
             return  Ok( await _registrationService.RegisterUser(user));
        
+        }
+
+        [HttpPost("refresh-token")]
+        public async Task<ActionResult<string>> RefreshToken(UserLoginModel user)
+        {
+            var refreshToken = Request.Cookies["refreshToken"];
+            if(!user.RefreshToken.Equals(refreshToken))
+            {
+                return Unauthorized("Invalid refresh Token"+user.RefreshToken+" || "+refreshToken);
+            }
+            else if (user.TokenExpires < DateTime.Now)
+            {
+                return Unauthorized("Token expired.");
+            }
+            string token = await _tokenService.AuthenticUser(user);
+
+            return Ok(token);
+
         }
 
 

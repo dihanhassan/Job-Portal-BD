@@ -2258,19 +2258,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\TN-99347\\.nuget\\packages\\": {}
+    "C:\\Users\\Rayanop\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TN-99347\\Desktop\\JOB PORTAL\\JobPortal.API\\JobPortal.API\\JobPortal.API.csproj",
+      "projectUniqueName": "C:\\Users\\Rayanop\\Desktop\\JOB-PORTAL-BD\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\JobPortal.API.csproj",
       "projectName": "JobPortal.API",
-      "projectPath": "C:\\Users\\TN-99347\\Desktop\\JOB PORTAL\\JobPortal.API\\JobPortal.API\\JobPortal.API.csproj",
-      "packagesPath": "C:\\Users\\TN-99347\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TN-99347\\Desktop\\JOB PORTAL\\JobPortal.API\\JobPortal.API\\obj\\",
+      "projectPath": "C:\\Users\\Rayanop\\Desktop\\JOB-PORTAL-BD\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\JobPortal.API.csproj",
+      "packagesPath": "C:\\Users\\Rayanop\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Rayanop\\Desktop\\JOB-PORTAL-BD\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\TN-99347\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Rayanop\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -2290,6 +2290,11 @@
         "warnAsError": [
           "NU1605"
         ]
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -2332,7 +2337,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
