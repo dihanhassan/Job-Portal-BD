@@ -8,8 +8,8 @@ namespace JobPortal.API.Models.Response
         public string StatusMessage { get; set; } = string.Empty;
         
         public UserLoginModel UserLogin { get; set; }
-        
-       
+
+        public List<JobPostModel> GetJobPosts { get; set; }
 
     }
 }
