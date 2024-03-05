@@ -7,9 +7,9 @@ using System.Text;
 using System.IdentityModel.Tokens.Jwt;
 using System.Reflection.Metadata.Ecma335;
 using Microsoft.AspNetCore.Authorization;
-using JobPortal.API.Services.Implementation;
 using JobPortal.API.Services.Interface;
 using JobPortal.API.Models.Response;
+using JobPortal.API.Middleware;
 namespace JobPortal.API.Controllers
 {
     [Route("api/[controller]")]
@@ -17,12 +17,12 @@ namespace JobPortal.API.Controllers
     public class AuthController : ControllerBase
     {
        
-        private readonly TokenService _tokenService;
+        private readonly CustomAuth _tokenService;
         private readonly IRegistrationService _registrationService;
         private readonly ILoginService _loginService;
         public AuthController
         (
-            TokenService tokenService,
+            CustomAuth tokenService,
             IRegistrationService registrationService,
             ILoginService loginService
 

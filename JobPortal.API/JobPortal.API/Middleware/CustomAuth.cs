@@ -4,22 +4,22 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace JobPortal.API.Services.Implementation
+namespace JobPortal.API.Middleware
 {
-    public class TokenService
+    public class CustomAuth
     {
         private readonly IConfiguration _configuration;
-        public TokenService(IConfiguration configuration)
+        public CustomAuth(IConfiguration configuration)
         {
             _configuration = configuration;
         }
         public async Task<RefreshTokenResponse> AuthenticUser(UserLoginModel user)
         {
-           
-            
-              return await  GenerateToken(user.UserID);
-           
-            
+
+
+            return await GenerateToken(user.UserID);
+
+
         }
         public async Task<RefreshTokenResponse> GenerateToken(string userID)
         {
@@ -56,7 +56,7 @@ namespace JobPortal.API.Services.Implementation
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
-            return  tokenHandler.WriteToken(token);
+            return tokenHandler.WriteToken(token);
         }
         public async Task<string> ExtractUserIdFromRefreshToken(string refreshToken)
         {
@@ -65,7 +65,7 @@ namespace JobPortal.API.Services.Implementation
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var key = Encoding.ASCII.GetBytes(_configuration["Jwt:RefreshTokenKey"]);
 
-               
+
                 var tokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
@@ -75,17 +75,17 @@ namespace JobPortal.API.Services.Implementation
                     ClockSkew = TimeSpan.Zero
                 };
 
-               
+
                 var claimsPrincipal = tokenHandler.ValidateToken(refreshToken, tokenValidationParameters, out _);
 
-               
+
                 var userId = claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-                return  userId;
+                return userId;
             }
             catch (Exception ex)
             {
-            
+
                 return null;
             }
         }

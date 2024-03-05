@@ -2,16 +2,17 @@
 using JobPortal.API.Repositorie.Interface;
 using JobPortal.API.Services.Interface;
 using JobPortal.API.Models.Response;
+using JobPortal.API.Middleware;
 namespace JobPortal.API.Services.Implementation
 {
     public class LoginService : ILoginService
     {
         private readonly ILoginRepo _repo;
-        private TokenService _tokenService;
+        private CustomAuth _tokenService;
         public LoginService
         (
             ILoginRepo repo, 
-            TokenService tokenService
+            CustomAuth tokenService
 
         )
         {
