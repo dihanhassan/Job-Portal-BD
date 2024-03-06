@@ -4,8 +4,8 @@ using JobPortal.API.Models.Response;
 
 namespace JobPortal.API.Services.Interface
 {
-    public interface IJobSeekerProfileService
+    public interface IEmployeeProfileService
     {
-        public Task<ResponseModel> SetProfileInfo(JobSeekerProfileModel profile);
+        public Task<ResponseModel> SetProfileInfo(EmployeeProfileModel profile);
     }
 }

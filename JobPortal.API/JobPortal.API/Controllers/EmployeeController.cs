@@ -10,9 +10,9 @@ namespace JobPortal.API.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly IJobSeekerProfileService _jobSeekerProfileService;
+        private readonly IEmployeeProfileService _jobSeekerProfileService;
         
-        public EmployeeController(IJobSeekerProfileService jobSeekerProfileService)
+        public EmployeeController(IEmployeeProfileService jobSeekerProfileService)
         {
             _jobSeekerProfileService = jobSeekerProfileService;
         }
@@ -31,7 +31,7 @@ namespace JobPortal.API.Controllers
         [Authorize]
         [HttpPost]
         [Route("SetSeekerProfile")]
-        public async Task<IActionResult> SetSeekerProfile(JobSeekerProfileModel profile)
+        public async Task<IActionResult> SetSeekerProfile(EmployeeProfileModel profile)
         {
             IActionResult response = Unauthorized();
 

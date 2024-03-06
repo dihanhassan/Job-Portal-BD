@@ -8,15 +8,15 @@ using JobPortal.API.Services.Interface;
 
 namespace JobPortal.API.Services.Implementation
 {
-    public class JobSeekerProfileService : IJobSeekerProfileService
+    public class EmployeeProfileService : IEmployeeProfileService
     {
-        private readonly IJobSeekerProfileRepo _jobSeekerProfileRepo;
-        public JobSeekerProfileService(IJobSeekerProfileRepo jobSeekerProfileRepo)
+        private readonly IEmployeeProfileRepo _jobSeekerProfileRepo;
+        public EmployeeProfileService(IEmployeeProfileRepo jobSeekerProfileRepo)
         {
            _jobSeekerProfileRepo = jobSeekerProfileRepo;
             
         }
-        public async Task<ResponseModel> SetProfileInfo(JobSeekerProfileModel profile)
+        public async Task<ResponseModel> SetProfileInfo(EmployeeProfileModel profile)
         {
             ResponseModel response = new ResponseModel();
 

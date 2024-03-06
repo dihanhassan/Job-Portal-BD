@@ -18,8 +18,8 @@ namespace JobPortal.API
             Services.AddTransient<IRegistrationRepo, RegistrationRepo>();
             Services.AddTransient<ILoginRepo, LoginRepo>();
             Services.AddTransient<ILoginService, LoginService>();
-            Services.AddTransient<IJobSeekerProfileService, JobSeekerProfileService>();
-            Services.AddTransient<IJobSeekerProfileRepo, JobSeekerProfileRepo>();
+            Services.AddTransient<IEmployeeProfileService, EmployeeProfileService>();
+            Services.AddTransient<IEmployeeProfileRepo, EmployeeProfileRepo>();
             Services.AddTransient<IJobPostRepo, JobPostRepo>();
             Services.AddTransient<IJobPostService, JobPostService>();
         }

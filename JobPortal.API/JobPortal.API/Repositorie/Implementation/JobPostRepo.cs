@@ -22,11 +22,10 @@ namespace JobPortal.API.Repositorie.Implementation
                 using (var connection = _dbConnection.CreateConnection())
                 {
                     string query = @"
-                    INSERT INTO JOB_POSTS (UserID, Title, Description, Vacancy, Education, Organization, Location, EmployeeStatus, Experience, Created, DeadLine, Field)
-                    VALUES (@UserID, @Title, @Description, @Vacancy, @Education, @Organization, @Location, @EmployeeStatus, @Experience, @Created, @DeadLine, @Field)";
+                    INSERT INTO JOB_POSTS (UserID, Title, Description, Vacancy, Education, Organization, Location,Requirements,Responsibilities,Compensation, EmployeeStatus, Experience, Created, DeadLine, Field)
+                    VALUES (@UserID, @Title, @Description, @Vacancy, @Education, @Organization, @Location,@Requirements,@Responsibilities,@Compensation, @EmployeeStatus, @Experience, @Created, @DeadLine, @Field)";
 
                     RowsEffect = await connection.ExecuteAsync(query, jobPost);
-
 
                 }
                 return RowsEffect;

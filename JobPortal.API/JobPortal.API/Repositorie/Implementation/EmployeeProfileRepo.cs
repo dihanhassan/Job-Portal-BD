@@ -7,14 +7,14 @@ using System.Reflection;
 
 namespace JobPortal.API.Repositorie.Implementation
 {
-    public class JobSeekerProfileRepo : IJobSeekerProfileRepo
+    public class EmployeeProfileRepo : IEmployeeProfileRepo
     {
         private readonly DapperDBConnection _connection;
-        public JobSeekerProfileRepo(DapperDBConnection dBConnection)
+        public EmployeeProfileRepo(DapperDBConnection dBConnection)
         {
             _connection = dBConnection;
         }
-        public async Task<int> SetProfileInfo(JobSeekerProfileModel profile)
+        public async Task<int> SetProfileInfo(EmployeeProfileModel profile)
         {
             try
             {

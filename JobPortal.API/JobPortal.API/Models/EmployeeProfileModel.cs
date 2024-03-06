@@ -5,7 +5,7 @@ using JobPortal.API.Models.Authentication;
 
 namespace JobPortal.API.Models
 {
-    public class JobSeekerProfileModel
+    public class EmployeeProfileModel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
