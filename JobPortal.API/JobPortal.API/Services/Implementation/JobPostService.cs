@@ -21,6 +21,7 @@ namespace JobPortal.API.Services.Implementation
             try
             {
                 int rowEffect = await _repo.AddJobPost(jobPost);
+               
                 if (rowEffect > 0)
                 {
                     response.StatusMessage = "Add Post Successfully.";
@@ -58,7 +59,7 @@ namespace JobPortal.API.Services.Implementation
                 }
                 else
                 {
-                    response.StatusMessage = "Something Error!";
+                    response.StatusMessage = "No Data Found";
                     response.StatusCode = 100;
                 }
                 return response;

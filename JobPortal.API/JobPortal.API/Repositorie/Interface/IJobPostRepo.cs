@@ -6,5 +6,7 @@ namespace JobPortal.API.Repositorie.Interface
     {
         public Task<int> AddJobPost (JobPostModel jobPost);
         public Task<List<JobPostModel>> GetJobPosts();
+
+
     }
 }

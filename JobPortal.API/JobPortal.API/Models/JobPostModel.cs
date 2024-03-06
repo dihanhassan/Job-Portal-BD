@@ -20,9 +20,9 @@ namespace JobPortal.API.Models
         public string Organization {  get; set; } = string.Empty;
         [Required]
         public string Location { get; set; } = string.Empty;
-        public string Requirements { get; set; } = string.Empty;
-        [Required]
-        public string Responsibilities { get; set; } = string.Empty;
+        public string[] Requirements { get; set; } =null;
+       
+        public string[] Responsibilities { get; set; } = null;
         [Required]
         public string Compensation { get; set; } = string.Empty;
         [Required]

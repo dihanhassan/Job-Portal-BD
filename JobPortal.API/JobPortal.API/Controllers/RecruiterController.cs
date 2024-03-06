@@ -18,7 +18,7 @@ namespace JobPortal.API.Controllers
         {
             _jobPostService = jobPostService;   
         }
-        [Authorize]
+       
         [HttpPost]
         [Route("AddPost")]
         public async Task<IActionResult> AddPost(JobPostModel jobPost)
@@ -28,7 +28,7 @@ namespace JobPortal.API.Controllers
             return Ok(await _jobPostService.AddJobPost(jobPost));
         }
 
-        [Authorize]
+        
         [HttpGet]
         [Route("GetAllPosts")]
         public async Task<IActionResult> GetAllPosts()
