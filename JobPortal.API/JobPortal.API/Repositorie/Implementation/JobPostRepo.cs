@@ -29,30 +29,30 @@ namespace JobPortal.API.Repositorie.Implementation
                         try
                         {
                             string query = @"
-                        INSERT INTO JOB_POSTS_HEADER (UserID, Title, Description, Vacancy, Education, Organization, Location,Compensation, EmployeeStatus, Experience, Created, DeadLine, Field)
-                        VALUES (@UserID, @Title, @Description, @Vacancy, @Education, @Organization, @Location,@Compensation, @EmployeeStatus, @Experience, @Created, @DeadLine, @Field)";
+                            INSERT INTO JOB_POSTS_HEADER (UserID, Title, Description, Vacancy, Education, Organization, Location,Compensation, EmployeeStatus, Experience, Created, DeadLine, Field)
+                            VALUES (@UserID, @Title, @Description, @Vacancy, @Education, @Organization, @Location,@Compensation, @EmployeeStatus, @Experience, @Created, @DeadLine, @Field)";
 
                             RowsEffect = await connection.ExecuteAsync(query, jobPost, transaction);
 
 
                             for (int i = 0; i < jobPost.Responsibilities.Length; i++)
                             {
-                                string Responsibilities = jobPost.Responsibilities[i].ToString();
+                                
                                 string queryNew = @"
-                            INSERT INTO JOB_POSTS_RESPONSIBILITY (UserID,Responsibilities)
-                            VALUES (@UserID,@Responsibilities)";
+                                INSERT INTO JOB_POSTS_RESPONSIBILITY (UserID,Responsibilities)
+                                VALUES (@UserID,@Responsibilities)";
 
-                                RowsEffect &= await connection.ExecuteAsync(queryNew, jobPost, transaction);
+                                RowsEffect &= await connection.ExecuteAsync(queryNew, new { UserID = jobPost.UserID, Responsibilities = jobPost.Responsibilities[i].ToString() }, transaction);
                             }
 
                             for (int i = 0; i < jobPost.Requirements.Length; i++)
                             {
-                                string Requirement = jobPost.Requirements[i].ToString();
+                             
                                 string queryNew = @"
-                              INSERT INTO JOB_POSTS_REQUIREMENTS (UserID,Responsibilities)
-                              VALUES (@UserID,@Requirement)";
+                                INSERT INTO JOB_POSTS_REQUIREMENTS (UserID,Requirements)
+                                VALUES (@UserID,@Requirements)";
 
-                                RowsEffect &= await connection.ExecuteAsync(queryNew, jobPost, transaction);
+                                RowsEffect &= await connection.ExecuteAsync(queryNew, new { UserID  = jobPost.UserID, Requirements = jobPost.Requirements[i].ToString() }, transaction);
                             }
 
                             transaction.Commit();
