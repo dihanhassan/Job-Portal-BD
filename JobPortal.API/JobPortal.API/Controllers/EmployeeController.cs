@@ -11,10 +11,15 @@ namespace JobPortal.API.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeProfileService _jobSeekerProfileService;
-        
-        public EmployeeController(IEmployeeProfileService jobSeekerProfileService)
+        private readonly IJobApplyService _jobApplyService;
+        public EmployeeController
+        (
+          IEmployeeProfileService jobSeekerProfileService,
+          IJobApplyService jobApplyService       
+        )
         {
             _jobSeekerProfileService = jobSeekerProfileService;
+            _jobApplyService = jobApplyService;
         }
 
         [Authorize]
@@ -39,8 +44,19 @@ namespace JobPortal.API.Controllers
             return Ok(await _jobSeekerProfileService.SetProfileInfo(profile));
 
         }
+       
+        [HttpPost]
+        [Route("JobApply")]
+        public async Task<IActionResult> JobApply(JobApplyModel jobApply)
+        {
+            IActionResult response = Unauthorized();
 
-      
+
+            return Ok(await _jobApplyService.JobApply(jobApply));
+
+        }
+
+
 
     }
 }

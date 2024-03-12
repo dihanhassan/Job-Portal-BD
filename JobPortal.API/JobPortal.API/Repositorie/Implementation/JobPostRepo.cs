@@ -149,6 +149,118 @@ namespace JobPortal.API.Repositorie.Implementation
             
         }
 
+        public async Task<List<JobPostModel>> GetJobPostsByUserID(string UserID)
+        {
+            try
+
+            {
+                List<JobPostModel> jobs = new List<JobPostModel>();
+
+
+
+                using (var connection = _dbConnection.CreateConnection())
+                {
+
+
+
+                    string query = @"SELECT * FROM JOB_POSTS_HEADER
+                                    WHERE UserID=@UserID";
+
+                    var GetjobPosts = await connection.QueryAsync<JobPostModel>(query,new { UserID=UserID});
+                    jobs = GetjobPosts.ToList();
+
+                    connection.Open();
+                    foreach (var jobPost in jobs)
+                    {
+
+                        string queryReq = @"SELECT Requirements 
+                                                FROM JOB_POSTS_REQUIREMENTS 
+                                                WHERE  postID = @postID";
+                        using (var readr = await connection.ExecuteReaderAsync(queryReq, new { postID = jobPost.postID }))
+                        {
+                            List<string> requirement = new List<string>();
+                            while (readr.Read())
+                            {
+                                requirement.Add(readr.GetString(0));
+                            }
+                            jobPost.Requirements = requirement.ToArray();
+                        }
+
+                        string queryRes = @"SELECT Responsibilities 
+                                                FROM JOB_POSTS_RESPONSIBILITY
+                                                WHERE  postID = @postID";
+                        using (var readr = await connection.ExecuteReaderAsync(queryRes, new { postID = jobPost.postID }))
+                        {
+                            List<string> responsibilities = new List<string>();
+                            while (readr.Read())
+                            {
+                                responsibilities.Add(readr.GetString(0));
+                            }
+                            jobPost.Responsibilities = responsibilities.ToArray();
+                        }
+                    }
+
+                }
+                return jobs;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+
+            }
+
+        }
+
+
+        public async Task<int> DeletePost(int PostID)
+        {
+            try
+            {
+                int isDeleted = 0;
+
+                using (var connection = _dbConnection.CreateConnection())
+                {
+                    connection.Open();
+                    using (var transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            string query = @"DELETE FROM JOB_POSTS_HEADER 
+                                             WHERE PostID=@PostID";
+
+                            isDeleted = await connection.ExecuteAsync(query, new { PostID = PostID }, transaction);
+
+                            string query2 = @"DELETE FROM JOB_POSTS_RESPONSIBILITY 
+                                             WHERE PostID=@PostID";
+
+                            isDeleted &= await connection.ExecuteAsync(query2, new { PostID = PostID }, transaction);
+
+                            string query3 = @"DELETE FROM JOB_POSTS_REQUIREMENTS 
+                                             WHERE PostID=@PostID";
+
+                            isDeleted &= await connection.ExecuteAsync(query3, new { PostID = PostID }, transaction);
+
+                            isDeleted = 1;
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            throw new Exception(ex.Message);
+                        }
+                    }
+
+
+
+                }
+                return isDeleted;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
 
 
     }

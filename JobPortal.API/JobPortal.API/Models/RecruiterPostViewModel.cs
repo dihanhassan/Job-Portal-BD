@@ -1,7 +1,7 @@
 ﻿namespace JobPortal.API.Models
 {
-    public class ApplyModel
+    public class RecruiterPostViewModel
     {
-         
+
     }
 }

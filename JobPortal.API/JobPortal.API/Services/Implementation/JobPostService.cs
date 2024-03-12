@@ -74,6 +74,66 @@ namespace JobPortal.API.Services.Implementation
 
         }
 
+        public async Task<ResponseModel> GetJobPostsByUserID(string UserID)
+        {
+
+            try
+            {
+                ResponseModel response = new ResponseModel();
+                List<JobPostModel> post = await _repo.GetJobPostsByUserID(UserID);
+                if (post.Count > 0)
+                {
+                    response.GetJobPosts = post;
+
+                    response.StatusMessage = "post get successfully!";
+                    response.StatusCode = 200;
+
+                }
+                else
+                {
+                    response.StatusMessage = "No Data Found";
+                    response.StatusCode = 100;
+                }
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+
+
+        }
+
+        public async Task<ResponseModel> DeletePost(int PostID)
+        {
+            try
+            {
+                ResponseModel response = new ResponseModel();
+                
+                if (await _repo.DeletePost(PostID) > 0)
+                {
+                    
+                    response.StatusMessage = "Post deleted successfully!";
+                    response.StatusCode = 200;
+
+                }
+                else
+                {
+                    response.StatusMessage = "Get error to delete";
+                    response.StatusCode = 100;
+                }
+                return response;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
 
     }
 }
