@@ -35,6 +35,8 @@ namespace JobPortal.API.Models
         [Required]
         public string  Field { get; set; } = string.Empty;
 
+        public bool IsDeleted { get; set; }
+
 
     }
 }

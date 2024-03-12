@@ -28,7 +28,7 @@ namespace JobPortal.API.Controllers
             return Ok(await _jobPostService.GetJobPostsByUserID(UserID));
         }
 
-        [HttpDelete]
+        [HttpPut]
         [Route("DeletePost")]
         public async Task<IActionResult> DeletePost(int PostID)
         {
