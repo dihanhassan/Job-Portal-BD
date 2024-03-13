@@ -12,10 +12,16 @@ namespace JobPortal.API.Controllers
     public class RecruiterPannelController : ControllerBase
     {
         private readonly IJobPostService _jobPostService;
-
-        public RecruiterPannelController(IJobPostService jobPostService)
+        private readonly IViewApplicantService _viewApplicantService;
+        public RecruiterPannelController
+        (
+            IJobPostService jobPostService,
+            IViewApplicantService viewApplicantService
+        )
         {
-           _jobPostService = jobPostService;    
+            _jobPostService = jobPostService;    
+            _viewApplicantService = viewApplicantService;   
+
         }
 
 
@@ -36,5 +42,15 @@ namespace JobPortal.API.Controllers
             return Ok(await _jobPostService.DeletePost(PostID));
 
         }
+        [HttpGet]
+        [Route("GetApplicantInfo")]
+        public async Task<IActionResult> GetApplicantInfo(string UserID, int PostID)
+        {
+            IActionResult response = Unauthorized();
+
+            return Ok(await _viewApplicantService.GetApplicantInfo(UserID, PostID));
+           
+        }
+
     }
 }

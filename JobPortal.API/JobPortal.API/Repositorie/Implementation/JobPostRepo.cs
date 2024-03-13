@@ -30,32 +30,32 @@ namespace JobPortal.API.Repositorie.Implementation
                         try
                         {
                             string query = @"
-                            INSERT INTO JOB_POSTS_HEADER (UserID, Title, Description, Vacancy, Education, Organization, Location,Compensation, EmployeeStatus, Experience, Created, DeadLine, Field)
-                            VALUES (@UserID, @Title, @Description, @Vacancy, @Education, @Organization, @Location,@Compensation, @EmployeeStatus, @Experience, @Created, @DeadLine, @Field)";
-
+                            INSERT INTO JOB_POSTS_HEADER (UserID, Title, Description, Vacancy, Education, Organization, Location,Compensation, EmployeeStatus, Experience, Created, DeadLine, Field,IsDeleted)
+                            VALUES (@UserID, @Title, @Description, @Vacancy, @Education, @Organization, @Location,@Compensation, @EmployeeStatus, @Experience, @Created, @DeadLine, @Field,0)";
+                            
                             RowsEffect = await connection.ExecuteAsync(query, jobPost, transaction);
 
 
                             for (int i = 0; i < jobPost.Responsibilities.Length; i++)
                             {
-                                
-                                string queryNew = @"
-                                INSERT INTO JOB_POSTS_RESPONSIBILITY (UserID,Responsibilities)
-                                VALUES (@UserID,@Responsibilities)";
 
-                                RowsEffect &= await connection.ExecuteAsync(queryNew, new { UserID = jobPost.UserID, Responsibilities = jobPost.Responsibilities[i].ToString() }, transaction);
+                                string queryNew = @"
+                                INSERT INTO JOB_POSTS_RESPONSIBILITY (UserID,Responsibilities,IsDeleted,PostID)
+                                VALUES (@UserID,@Responsibilities,0,@PostID)";
+
+                                RowsEffect &= await connection.ExecuteAsync(queryNew, new { UserID = jobPost.UserID, Responsibilities = jobPost.Responsibilities[i].ToString(), PostID = jobPost.postID },  transaction);
                             }
 
                             for (int i = 0; i < jobPost.Requirements.Length; i++)
                             {
-                             
+
                                 string queryNew = @"
-                                INSERT INTO JOB_POSTS_REQUIREMENTS (UserID,Requirements)
-                                VALUES (@UserID,@Requirements)";
+                                INSERT INTO JOB_POSTS_REQUIREMENTS (UserID,Requirements,IsDeleted,PostID)
+                                VALUES (@UserID,@Requirements,0,@PostID)";
 
-                                RowsEffect &= await connection.ExecuteAsync(queryNew, new { UserID  = jobPost.UserID, Requirements = jobPost.Requirements[i].ToString() }, transaction);
+                                RowsEffect &= await connection.ExecuteAsync(queryNew, new { UserID = jobPost.UserID, Requirements = jobPost.Requirements[i].ToString(), PostID=jobPost.postID }, transaction);
                             }
-
+                            RowsEffect = 1;
                             transaction.Commit();
                         }
                         catch (Exception ex)
@@ -131,15 +131,6 @@ namespace JobPortal.API.Repositorie.Implementation
                             jobPost.Responsibilities = responsibilities.ToArray();
                         }
                     }
-
-
-                  
-
-
-               
-                    
-                  
-
                     
                 }
                 return  jobs;

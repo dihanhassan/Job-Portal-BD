@@ -10,6 +10,7 @@ namespace JobPortal.API.Models.Response
         public UserLoginModel UserLogin { get; set; }
 
         public List<JobPostModel> GetJobPosts { get; set; }
+        public List<ApplicantInfoModel> GetApplicantInfo { get; set; }
 
     }
 }
