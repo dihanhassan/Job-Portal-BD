@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\Resume\\1b2e3e92-a096-4250-966a-b2e8755e2d06-Dihan_RESUME.pdf",
+      "PackagePath": "staticwebassets\\Resume\\1b2e3e92-a096-4250-966a-b2e8755e2d06-Dihan_RESUME.pdf"
+    },
+    {
+      "Id": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\Resume\\a593ea59-894a-46c3-aa4e-8d63e8161236-Dihan_RESUME.pdf",
+      "PackagePath": "staticwebassets\\Resume\\a593ea59-894a-46c3-aa4e-8d63e8161236-Dihan_RESUME.pdf"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.JobPortal.API.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.JobPortal.API.props",
+      "PackagePath": "build\\JobPortal.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.JobPortal.API.props",
+      "PackagePath": "buildMultiTargeting\\JobPortal.API.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.JobPortal.API.props",
+      "PackagePath": "buildTransitive\\JobPortal.API.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -36,7 +36,10 @@ namespace JobPortal.API.Models
         public string Institution { get; set; }
 
         // Navigation property for the foreign key relationship
-       
+        [Display(Name ="Upload your resume.pdf")]
+        public IFormFile Resume {  get; set; }
+
+        public string ? ResumeUrl { get; set; }
 
     }
 }

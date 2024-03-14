@@ -1,11 +1,58 @@
 {
   "Version": 1,
-  "Hash": "WWwd+GToK2XwHZ8dCk7215ud+4YKF5ytZp9NNWG3Tk0=",
+  "Hash": "J8wqdxlz/me48Vs16teTyPAtlSI0LCve6idt3HrM2Kc=",
   "Source": "JobPortal.API",
   "BasePath": "_content/JobPortal.API",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "JobPortal.API\\wwwroot",
+      "Source": "JobPortal.API",
+      "ContentRoot": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\",
+      "BasePath": "_content/JobPortal.API",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\Resume\\1b2e3e92-a096-4250-966a-b2e8755e2d06-Dihan_RESUME.pdf",
+      "SourceId": "JobPortal.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\",
+      "BasePath": "_content/JobPortal.API",
+      "RelativePath": "Resume/1b2e3e92-a096-4250-966a-b2e8755e2d06-Dihan_RESUME.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resume\\1b2e3e92-a096-4250-966a-b2e8755e2d06-Dihan_RESUME.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\Resume\\a593ea59-894a-46c3-aa4e-8d63e8161236-Dihan_RESUME.pdf",
+      "SourceId": "JobPortal.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\",
+      "BasePath": "_content/JobPortal.API",
+      "RelativePath": "Resume/a593ea59-894a-46c3-aa4e-8d63e8161236-Dihan_RESUME.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resume\\a593ea59-894a-46c3-aa4e-8d63e8161236-Dihan_RESUME.pdf"
+    }
+  ]
 }

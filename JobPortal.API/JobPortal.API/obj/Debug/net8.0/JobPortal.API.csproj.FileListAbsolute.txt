@@ -136,3 +136,4 @@ C:\Users\TN-99347\Desktop\Job\Job-Portal-BD\JobPortal.API\Job-Portal-BD\JobPorta
 C:\Users\TN-99347\Desktop\Job\Job-Portal-BD\JobPortal.API\Job-Portal-BD\JobPortal.API\JobPortal.API\obj\Debug\net8.0\JobPortal.API.pdb
 C:\Users\TN-99347\Desktop\Job\Job-Portal-BD\JobPortal.API\Job-Portal-BD\JobPortal.API\JobPortal.API\obj\Debug\net8.0\JobPortal.API.genruntimeconfig.cache
 C:\Users\TN-99347\Desktop\Job\Job-Portal-BD\JobPortal.API\Job-Portal-BD\JobPortal.API\JobPortal.API\obj\Debug\net8.0\ref\JobPortal.API.dll
+C:\Users\TN-99347\Desktop\Job\Job-Portal-BD\JobPortal.API\Job-Portal-BD\JobPortal.API\JobPortal.API\bin\Debug\net8.0\JobPortal.API.staticwebassets.runtime.json

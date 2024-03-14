@@ -31,6 +31,7 @@ namespace JobPortal.API.Repositorie.Implementation
                                     sp.[Institution],
                                     sp.[MobileNumber],
                                     sp.[Skill],
+                                    sp.[ResumeUrl],
                                     ut.[Email]
                                 FROM 
                                     JOB_APPLY ap

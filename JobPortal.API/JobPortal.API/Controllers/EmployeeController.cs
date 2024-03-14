@@ -12,14 +12,17 @@ namespace JobPortal.API.Controllers
     {
         private readonly IEmployeeProfileService _jobSeekerProfileService;
         private readonly IJobApplyService _jobApplyService;
+        private readonly IWebHostEnvironment _webHostEnvironment;
         public EmployeeController
         (
           IEmployeeProfileService jobSeekerProfileService,
-          IJobApplyService jobApplyService       
+          IJobApplyService jobApplyService,
+          IWebHostEnvironment webHostEnvironment
         )
         {
             _jobSeekerProfileService = jobSeekerProfileService;
             _jobApplyService = jobApplyService;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         [Authorize]
@@ -33,11 +36,21 @@ namespace JobPortal.API.Controllers
         
         
 
-        [Authorize]
+       
         [HttpPost]
         [Route("SetSeekerProfile")]
         public async Task<IActionResult> SetSeekerProfile(EmployeeProfileModel profile)
         {
+
+            if(profile.Resume != null)
+            {
+                string folder = "Resume/";
+                folder += Guid.NewGuid().ToString()+"-"+profile.Resume.FileName;
+                profile.ResumeUrl = "/"+folder;
+                string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath,folder);
+                await profile.Resume.CopyToAsync(new FileStream(serverFolder,FileMode.Create));
+            }
+
             IActionResult response = Unauthorized();
 
 

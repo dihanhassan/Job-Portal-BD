@@ -43,7 +43,16 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    // add file upload
+    app.UseStaticFiles();
+
+    app.UseRouting();
 }
+
+
+
+
 
 app.UseHttpsRedirection();
 

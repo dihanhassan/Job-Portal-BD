@@ -13,7 +13,7 @@
         public string Institution { get; set; }
         public DateTime AppliedDate { get; set;}
 
-        public string Resume {  get; set; }
+        public string ResumeUrl {  get; set; }
 
     }
 }

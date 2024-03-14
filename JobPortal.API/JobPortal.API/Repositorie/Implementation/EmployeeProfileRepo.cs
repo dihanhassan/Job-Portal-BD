@@ -19,8 +19,8 @@ namespace JobPortal.API.Repositorie.Implementation
             try
             {
                 
-                string query = @"INSERT INTO JOB_SEEKER_PROFILE(UserID, FirstName, LastName, Gender, MobileNumber, Skill, Institution)
-                                VALUES(@UserID, @FirstName, @LastName, @Gender, @MobileNumber, @Skill, @Institution)";
+                string query = @"INSERT INTO JOB_SEEKER_PROFILE(UserID, FirstName, LastName, Gender, MobileNumber, Skill, Institution,ResumeUrl)
+                                VALUES(@UserID, @FirstName, @LastName, @Gender, @MobileNumber, @Skill, @Institution,@ResumeUrl)";
 
                 int RowsCount = 0;
 
