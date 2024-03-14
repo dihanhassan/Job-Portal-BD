@@ -38,5 +38,36 @@ namespace JobPortal.API.Repositorie.Implementation
             }
         }
 
+        public async Task<int> UpdateProfileInfo(EmployeeProfileModel profile)
+        {
+            try
+            {
+
+                string query = @"UPDATE JOB_SEEKER_PROFILE
+                                SET FirstName = @FirstName,
+                                    LastName = @LastName,
+                                    Gender = @Gender,
+                                    MobileNumber = @MobileNumber,
+                                    Skill = @Skill,
+                                    Institution = @Institution,
+                                    ResumeUrl = @ResumeUrl
+                                WHERE UserID = @UserID AND ProfileId=@ProfileId;";
+
+                int RowsCount = 0;
+
+                using (var connection = _connection.CreateConnection())
+                {
+
+                    RowsCount = await connection.ExecuteAsync(query, profile);
+
+                }
+                return RowsCount;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

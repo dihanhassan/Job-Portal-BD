@@ -41,5 +41,30 @@ namespace JobPortal.API.Services.Implementation
             return  response;
 
         }
+        public async Task<ResponseModel> UpdateProfileInfo(EmployeeProfileModel profile)
+        {
+            ResponseModel response = new ResponseModel();
+
+            int RowsCount = await _jobSeekerProfileRepo.UpdateProfileInfo(profile);
+
+            if (RowsCount > 0)
+            {
+                response.StatusMessage = $"Profile Created Successfully ";
+                response.StatusCode = 200;
+                return response;
+            }
+            else
+            {
+                response.StatusMessage = $"Profile Create Failed";
+                response.StatusCode = 100;
+                return response;
+
+            }
+
+
+
+            return response;
+
+        }
     }
 }

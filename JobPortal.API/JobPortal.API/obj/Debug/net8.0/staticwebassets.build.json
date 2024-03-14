@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "J8wqdxlz/me48Vs16teTyPAtlSI0LCve6idt3HrM2Kc=",
+  "Hash": "FsbC66ghIVCMKQ8RmMxOUZew8HNPL2ZTqEW22xvMbUo=",
   "Source": "JobPortal.API",
   "BasePath": "_content/JobPortal.API",
   "Mode": "Default",
@@ -36,6 +36,25 @@
       "OriginalItemSpec": "wwwroot\\Resume\\1b2e3e92-a096-4250-966a-b2e8755e2d06-Dihan_RESUME.pdf"
     },
     {
+      "Identity": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\Resume\\84e0994b-6a0b-476d-bd37-319405fd6453-Resume_of_Atahar_Islam_Shihab.pdf",
+      "SourceId": "JobPortal.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\",
+      "BasePath": "_content/JobPortal.API",
+      "RelativePath": "Resume/84e0994b-6a0b-476d-bd37-319405fd6453-Resume_of_Atahar_Islam_Shihab.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resume\\84e0994b-6a0b-476d-bd37-319405fd6453-Resume_of_Atahar_Islam_Shihab.pdf"
+    },
+    {
       "Identity": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\Resume\\a593ea59-894a-46c3-aa4e-8d63e8161236-Dihan_RESUME.pdf",
       "SourceId": "JobPortal.API",
       "SourceType": "Discovered",
@@ -53,6 +72,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Resume\\a593ea59-894a-46c3-aa4e-8d63e8161236-Dihan_RESUME.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\Resume\\bf4a9a3e-7728-451b-b8d6-843a81197065-Resume_of_Atahar_Islam_Shihab.pdf",
+      "SourceId": "JobPortal.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\",
+      "BasePath": "_content/JobPortal.API",
+      "RelativePath": "Resume/bf4a9a3e-7728-451b-b8d6-843a81197065-Resume_of_Atahar_Islam_Shihab.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resume\\bf4a9a3e-7728-451b-b8d6-843a81197065-Resume_of_Atahar_Islam_Shihab.pdf"
+    },
+    {
+      "Identity": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\Resume\\e6776330-2610-4c10-8146-c0640fbc1a10-Resume_of_Atahar_Islam_Shihab.pdf",
+      "SourceId": "JobPortal.API",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\TN-99347\\Desktop\\Job\\Job-Portal-BD\\JobPortal.API\\Job-Portal-BD\\JobPortal.API\\JobPortal.API\\wwwroot\\",
+      "BasePath": "_content/JobPortal.API",
+      "RelativePath": "Resume/e6776330-2610-4c10-8146-c0640fbc1a10-Resume_of_Atahar_Islam_Shihab.pdf",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resume\\e6776330-2610-4c10-8146-c0640fbc1a10-Resume_of_Atahar_Islam_Shihab.pdf"
     }
   ]
 }

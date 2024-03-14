@@ -42,13 +42,13 @@ namespace JobPortal.API.Controllers
         public async Task<IActionResult> SetSeekerProfile(EmployeeProfileModel profile)
         {
 
-            if(profile.Resume != null)
+            if (profile.Resume != null)
             {
                 string folder = "Resume/";
-                folder += Guid.NewGuid().ToString()+"-"+profile.Resume.FileName;
-                profile.ResumeUrl = "/"+folder;
-                string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath,folder);
-                await profile.Resume.CopyToAsync(new FileStream(serverFolder,FileMode.Create));
+                folder += Guid.NewGuid().ToString() + "-" + profile.Resume.FileName;
+                profile.ResumeUrl = "/" + folder;
+                string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                await profile.Resume.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
             }
 
             IActionResult response = Unauthorized();
@@ -69,7 +69,26 @@ namespace JobPortal.API.Controllers
 
         }
 
+        [HttpPut]
+        [Route("UpdateSeekerProfile")]
+        public async Task<IActionResult> UpdateSeekerProfile (EmployeeProfileModel profile)
+        {
+            IActionResult response = Unauthorized();
 
+            if (profile.Resume != null)
+            {
+                string folder = "Resume/";
+                folder += Guid.NewGuid().ToString() + "-" + profile.Resume.FileName;
+                profile.ResumeUrl = "/" + folder;
+                string serverFolder = Path.Combine(_webHostEnvironment.WebRootPath, folder);
+                await profile.Resume.CopyToAsync(new FileStream(serverFolder, FileMode.Create));
+            }
+
+            return Ok(await _jobSeekerProfileService.UpdateProfileInfo(profile));
+        }
+
+        
+        
 
     }
 }
