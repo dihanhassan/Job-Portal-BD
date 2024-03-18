@@ -1,17 +1,22 @@
 ﻿using JobPortal.API.Models;
 using JobPortal.API.Models.Authentication;
+using JobPortal.API.Models.Log;
 using JobPortal.API.Models.Response;
 using JobPortal.API.Repositorie.Interface;
 using JobPortal.API.Services.Interface;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Text.Json;
 
 namespace JobPortal.API.Services.Implementation
 {
     public class JobPostService : IJobPostService
     {
         private readonly IJobPostRepo _repo;
-        public JobPostService(IJobPostRepo repo)
+        private readonly ILogRepo _logRepo;
+        public JobPostService(IJobPostRepo repo,ILogRepo logRepo)
         {
             _repo = repo;   
+            _logRepo = logRepo;
         }
     
         public async Task<ResponseModel> AddJobPost(JobPostModel jobPost)
@@ -26,7 +31,16 @@ namespace JobPortal.API.Services.Implementation
                 {
                     response.StatusMessage = "Add Post Successfully.";
                     response.StatusCode = 200;
-                    
+
+                    CustomLog log = new CustomLog
+                    {
+                        UserID = jobPost.UserID,
+                        ActionTime = DateTime.UtcNow,
+                        ActionType = "Insert",
+                        ActionField = "Add Post",
+                        jsonPayload = JsonSerializer.Serialize(jobPost)
+                    };
+                    await _logRepo.CreateLog(log);
                 }
                 else
                 {
